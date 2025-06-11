@@ -2,7 +2,7 @@
 
 * {
   font-family: "Cinzel", serif;
-  color: #5b0a0a;
+  
 }
 
 body {
@@ -17,10 +17,12 @@ body {
   background-position: center;
   height: 100vh;
   width: 100vw;
+  display: flex;
 }
 
 .side-bar {
-  background-color: #b99730;
+  background-color: #4b3621;
+  color: #fff5cc;
   height: 100vh;
   width: 24vh;
   display: flex;
@@ -31,15 +33,19 @@ body {
 .main {
   height: 100vh;
   width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .button {
   color: #d4af37;
-  /* background-color: #5b0a0a; */
   background-color: transparent;
   font-weight: bold;
   padding: 12px;
-  border: 2px solid #d4af37;
+  border: solid 2px #d4af37;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,4 +55,60 @@ body {
 .button:hover {
   transform: translateX(5px);
   color: #fff5cc;
+}
+
+nav {
+  border-top: solid 2px #060606;
+  padding: 12 px;
+}
+
+.history {
+  height: 100%;
+  padding: 10px;
+  margin: 10px;
+
+}
+
+.history li {
+  list-style-type: none;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.info {
+  opacity: 0.9;
+  font-size: small;
+  color: #060606;
+  padding: 10px;
+}
+.input-box {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+}
+
+.bottom-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  font-size: 20px;
+}
+input:focus {
+  outline: none;
+}
+#submit {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  user-select: none;
 }
