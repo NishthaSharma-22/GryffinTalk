@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
+
+* {
+  font-family: "Cinzel", serif;
+  color: #5b0a0a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background-image: url("https://cdn.pixabay.com/photo/2015/12/03/08/50/paper-1074131_1280.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.side-bar {
+  background-color: #b99730;
+  height: 100vh;
+  width: 24vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+}
+
+.button {
+  color: #d4af37;
+  /* background-color: #5b0a0a; */
+  background-color: transparent;
+  font-weight: bold;
+  padding: 12px;
+  border: 2px solid #d4af37;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3 ease;
+}
+
+.button:hover {
+  transform: translateX(5px);
+  color: #fff5cc;
+}
