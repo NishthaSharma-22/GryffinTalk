@@ -5,18 +5,7 @@ const App = () => {
     <div className="app">
       <section className="side-bar">
         <button className="button">+ New Chat</button>
-<<<<<<< HEAD
         <ul className="history"></ul>
-        <nav>
-          <p>Made by Nishtha</p>
-        </nav>
-      </section>
-      <section className="main"></section>
-=======
-        <ul className="history">
-          <li>Chat 1</li>
-          <li>Chat 2</li>
-        </ul>
         <nav>
           <p>GryffinTalk</p>
         </nav>
@@ -34,7 +23,6 @@ const App = () => {
           </p>
         </div>
       </section>
->>>>>>> recovery-branch
     </div>
   );
 

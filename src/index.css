@@ -2,11 +2,7 @@
 
 * {
   font-family: "Cinzel", serif;
-<<<<<<< HEAD
   color: #5b0a0a;
-=======
-  
->>>>>>> recovery-branch
 }
 
 body {
@@ -21,19 +17,16 @@ body {
   background-position: center;
   height: 100vh;
   width: 100vw;
-<<<<<<< HEAD
 }
 
 .side-bar {
   background-color: #b99730;
-=======
   display: flex;
 }
 
 .side-bar {
   background-color: #4b3621;
   color: #fff5cc;
->>>>>>> recovery-branch
   height: 100vh;
   width: 24vh;
   display: flex;
@@ -44,7 +37,6 @@ body {
 .main {
   height: 100vh;
   width: 100%;
-<<<<<<< HEAD
 }
 
 .button{
@@ -65,7 +57,7 @@ body {
   transform: translateX(5px);
   color: #fff5cc;
 }
-=======
+nav {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -145,4 +137,3 @@ input:focus {
   right: 0;
   user-select: none;
 }
->>>>>>> recovery-branch
