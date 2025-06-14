@@ -44,7 +44,7 @@ body {
   justify-content: space-between;
 }
 
-.button{
+.button {
   color: #d4af37;
   background-color: #5b0a0a;
   font-weight: bold;
@@ -52,13 +52,13 @@ body {
   border: 2px solid #d4af37;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3 ease;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.button:hover{
+.button:hover {
   transform: translateX(5px);
   color: #fff5cc;
 }
@@ -96,7 +96,6 @@ nav {
   height: 100%;
   padding: 10px;
   margin: 10px;
-
 }
 
 .history li {
@@ -138,7 +137,13 @@ input:focus {
 #submit {
   cursor: pointer;
   position: absolute;
-  bottom: 10px;
+  bottom: 4.5px;
   right: 0;
   user-select: none;
+  border: none;
+  border-radius: 4px;
+  background-color: #d4af37;
+  font-weight: 600;
+  font-size: medium;
+  padding: 10px 20px;
 }

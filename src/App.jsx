@@ -1,5 +1,25 @@
-
 const App = () => {
+  const getMessages = async () => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        message: "hello how are you?",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await fetch(
+        "http://localhost:2200/completions",
+        options
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="app">
@@ -16,16 +36,19 @@ const App = () => {
         <div className="bottom-section">
           <div className="input-box">
             <input />
-            <div id="submit">Submit</div>
+
+            <button id="submit" onClick={getMessages}>
+              Submit
+            </button>
           </div>
           <p className="info">
-            GryffinTalk v1.0.0 <br />Bridging the world of muggles and magic.
+            GryffinTalk v1.0.0 <br />
+            Bridging the world of muggles and magic.
           </p>
         </div>
       </section>
     </div>
   );
+};
 
-}
-
-export default App
+export default App;
