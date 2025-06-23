@@ -15,18 +15,21 @@ app.post("/completions", async (req, res) => {
   const options = {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
+      "x-goog-api-key": apiKey,
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "how are you?" }],
-      max_tokens: 100,
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: req.body.message }],
+        },
+      ],
     }),
   };
   try {
     const response = await fetch(
-      "https://api.openai.com/v1/chat/completions",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent",
       options
     );
     const data = await response.json();
