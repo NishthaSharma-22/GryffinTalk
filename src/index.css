@@ -149,3 +149,27 @@ input:focus {
   font-size: medium;
   padding: 10px 20px;
 }
+
+.talk-feed {
+  background-color: lightyellow;
+  min-height: 100px;
+  list-style: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px 15px;
+  overflow-y: auto;
+  flex: 1;
+}
+.talk-feed li.user {
+  text-align: right;
+  color: brown;
+}
+
+.talk-feed li.bot {
+  text-align: left;
+  color: #4b3621;
+}
+
+.talk-feed li {
+  padding: 8px 3px;
+}

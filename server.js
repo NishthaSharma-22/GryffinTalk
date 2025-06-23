@@ -22,14 +22,18 @@ app.post("/completions", async (req, res) => {
       contents: [
         {
           role: "user",
-          parts: [{ text: req.body.message }],
+          parts: [
+            {
+              text: `You are a hogwarts professor. Speak like a wizard. ${req.body.message}`,
+            },
+          ],
         },
       ],
     }),
   };
   try {
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent",
       options
     );
     const data = await response.json();

@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 
-const App = () => {
+export default function App() {
   const [value, setValue] = useState(null);
   const [message, setMessage] = useState(null);
+  const [chat, setChat] = useState([]);
+
   const getMessages = async () => {
+    if (!value) return;
+    const userMessage = {role: "user",text:value};
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -21,7 +25,10 @@ const App = () => {
       const data = await response.json();
       console.log(data);
       const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "NO reply";
+      const botMessage = {role: "bot", text:reply};
       setMessage(reply);
+      setChat((prev)=>[...prev, userMessage, botMessage]);
+      setValue("");
 
     } catch (error) {
       console.error(error);
@@ -39,6 +46,14 @@ const App = () => {
       </section>
       <section className="main">
         <h1>GryffinTalk</h1>
+        <ul className="talk-feed">
+          {chat.map((msg, idx) => (
+            <li key={idx} className={msg.role}>
+              {msg.role ==="user"?"You":"GryffinTalk"}:{msg.text}
+            </li>
+          ))}
+        </ul>
+
         <ul className="talk-feed"></ul>
         <div className="bottom-section">
           <div className="input-box">
@@ -57,5 +72,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
