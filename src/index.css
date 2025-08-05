@@ -158,7 +158,6 @@ input:focus {
   border-radius: 5px;
   margin: 2px 15px;
   overflow-y: auto;
-  flex: 1;
 }
 .talk-feed li.user {
   text-align: right;

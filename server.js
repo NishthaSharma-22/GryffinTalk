@@ -12,28 +12,29 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/completions", async (req, res) => {
+  const userMsg = req.body.message;
   const options = {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "x-goog-api-key": apiKey,
     },
     body: JSON.stringify({
-      contents: [
+      model: "gpt-3.5-turbo",
+      messages: [
         {
-          role: "user",
-          parts: [
-            {
-              text: `You are a hogwarts professor. Speak like a wizard. ${req.body.message}`,
-            },
-          ],
+          role: "system",
+          content:
+            "You are a magical assistant who attended Hogwarts. Always speak like a wizard from the Harry Potter world. Use wizarding vocabulary and style.",
         },
+        { role: "user", content: userMsg },
       ],
+      max_tokens: 100,
     }),
   };
   try {
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent",
+      "https://api.openai.com/v1/chat/completions",
       options
     );
     const data = await response.json();

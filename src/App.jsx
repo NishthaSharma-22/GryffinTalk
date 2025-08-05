@@ -4,6 +4,8 @@ export default function App() {
   const [value, setValue] = useState(null);
   const [message, setMessage] = useState(null);
   const [chat, setChat] = useState([]);
+  const [previousChats, setPreviousChats] = useState([]);
+  const [currentTitle, setCurrentTitle] = useState([]);
 
   const getMessages = async () => {
     if (!value) return;
@@ -34,7 +36,27 @@ export default function App() {
       console.error(error);
     }
   };
-  console.log(message);
+
+  useEffect(()=>{
+    console.log(currentTitle, value, message)
+    if (!currentTitle && value && message){
+      setCurrentTitle(value)
+    }
+    if (currentTitle && value && message) {
+      setPreviousChats(prevChats=>(
+        [...prevChats, 
+          {
+title: currentTitle,
+role: "user"
+content: value
+        }, {
+          title: currentTitle
+role: message.role,
+content: message.content
+        }]
+      ))
+    }
+  }, [message, currentTitle])
   return (
     <div className="app">
       <section className="side-bar">
@@ -53,8 +75,6 @@ export default function App() {
             </li>
           ))}
         </ul>
-
-        <ul className="talk-feed"></ul>
         <div className="bottom-section">
           <div className="input-box">
             <input value={value} onChange={(e) => setValue(e.target.value)} />
