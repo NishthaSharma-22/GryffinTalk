@@ -5,11 +5,11 @@ export default function App() {
   const [message, setMessage] = useState(null);
   const [chat, setChat] = useState([]);
   const [previousChats, setPreviousChats] = useState([]);
-  const [currentTitle, setCurrentTitle] = useState([]);
+  const [currentTitle, setCurrentTitle] = useState("");
 
   const getMessages = async () => {
     if (!value) return;
-    const userMessage = {role: "user",text:value};
+    const userMessage = { role: "user", text: value };
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -26,52 +26,54 @@ export default function App() {
       );
       const data = await response.json();
       console.log(data);
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "NO reply";
-      const botMessage = {role: "bot", text:reply};
+      const reply = data.reply || "NO reply";
+      const botMessage = { role: "bot", text: reply };
       setMessage(reply);
-      setChat((prev)=>[...prev, userMessage, botMessage]);
+      setChat((prev) => [...prev, userMessage, botMessage]);
       setValue("");
-
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(()=>{
-    console.log(currentTitle, value, message)
-    if (!currentTitle && value && message){
-      setCurrentTitle(value)
+  useEffect(() => {
+    console.log(currentTitle, value, message);
+    if (!currentTitle && value && message) {
+      setCurrentTitle(value);
     }
-    if (currentTitle && value && message) {
-      setPreviousChats(prevChats=>(
-        [...prevChats, 
-          {
-title: currentTitle,
-role: "user"
-content: value
-        }, {
-          title: currentTitle
-role: message.role,
-content: message.content
-        }]
-      ))
+    if (currentTitle && message) {
+      setPreviousChats((prevChats) => [
+        ...prevChats,
+        {
+          title: currentTitle,
+          role: "user",
+          content: chat[chat.length - 2]?.text,
+        },
+        {
+          title: currentTitle,
+          role: "bot",
+          content: message,
+        },
+      ]);
     }
-  }, [message, currentTitle])
+  }, [message]);
   return (
     <div className="app">
       <section className="side-bar">
-        <button className="button">+ New Chat</button>
+        <button className="nav-button">+ New Chat</button>
         <ul className="history"></ul>
         <nav>
-          <p>GryffinTalk</p>
+          <p className="bottom-text">GryffinTalk</p>
         </nav>
       </section>
       <section className="main">
-        <h1>GryffinTalk</h1>
+        <div>
+          <h1>GryffinTalk</h1>
+        </div>
         <ul className="talk-feed">
           {chat.map((msg, idx) => (
             <li key={idx} className={msg.role}>
-              {msg.role ==="user"?"You":"GryffinTalk"}:{msg.text}
+              {msg.role === "user" ? "You" : "GryffinTalk"}:{msg.text}
             </li>
           ))}
         </ul>
@@ -91,4 +93,4 @@ content: message.content
       </section>
     </div>
   );
-};
+}
