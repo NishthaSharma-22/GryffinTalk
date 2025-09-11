@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function App() {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("");
   const [message, setMessage] = useState(null);
   const [chat, setChat] = useState([]);
   const [previousChats, setPreviousChats] = useState([]);
@@ -21,9 +21,10 @@ export default function App() {
     };
     try {
       const response = await fetch(
-        "http://localhost:2200/completions",
+        "http://gryffintalk-production.up.railway.app/completions",
         options
       );
+
       const data = await response.json();
       console.log(data);
       const reply = data.reply || "NO reply";
