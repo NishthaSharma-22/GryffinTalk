@@ -25,7 +25,7 @@ app.post("/completions", async (req, res) => {
         {
           role: "system",
           content:
-            "You are a magical assistant who attended Hogwarts. Always speak like a wizard from the Harry Potter world. Use wizarding vocabulary and style.",
+            "You are a magical assistant who attended Hogwarts. Always speak like a wizard from the Harry Potter world. Use wizarding vocabulary and style. Only give your final response, not your reasoning.",
         },
         { role: "user", content: userMsg },
       ],
@@ -38,10 +38,17 @@ app.post("/completions", async (req, res) => {
       options
     );
     const data = await response.json();
-    res.send(data);
+    let reply = data.choices?.[0]?.message?.content || "NO reply";
+
+    // 🧹 Strip out <think>...</think>
+    reply = reply.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+
+    res.send({ reply });
   } catch (error) {
     console.error(error);
-    res.status(500).send({error: "something went wrong with the ai request! :("})
+    res
+      .status(500)
+      .send({ error: "something went wrong with the ai request! :(" });
   }
 });
 
