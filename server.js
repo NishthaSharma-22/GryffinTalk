@@ -8,7 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 2200;
 // const apiKey = process.env.API_KEY;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://gryffin-talk.vercel.app",
+  })
+);
 app.use(express.json());
 
 app.post("/completions", async (req, res) => {
