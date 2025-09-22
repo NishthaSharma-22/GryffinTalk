@@ -21,7 +21,7 @@ export default function App() {
     };
     try {
       const response = await fetch(
-        "https://gryffintalk-production.up.railway.app/completions",
+        "https://gryffintalk.onrender.com/completions",
         options
       );
 

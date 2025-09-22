@@ -11,20 +11,22 @@ const PORT = process.env.PORT || 2200;
 app.use(
   cors({
     origin: "https://gryffin-talk.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
+
+app.options("/completions", cors());
 
 app.post("/completions", async (req, res) => {
   const userMsg = req.body.message;
   const options = {
     method: "POST",
     headers: {
-      // Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
@@ -44,7 +46,6 @@ app.post("/completions", async (req, res) => {
     const data = await response.json();
     let reply = data.choices?.[0]?.message?.content || "NO reply";
 
-    // 🧹 Strip out <think>...</think>
     reply = reply.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
 
     res.send({ reply });
